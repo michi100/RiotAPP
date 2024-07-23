@@ -2,9 +2,10 @@ import os
 import requests
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 load_dotenv(".env")
 
 # 環境変数からAPIキーを取得
@@ -34,22 +35,3 @@ def get_account_info():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-# # プレイヤーの情報
-# game_name = "oto"
-# tag_line = "7340"
-# region = "asia"
-
-# # エンドポイントURL
-# url = f"https://{region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{game_name}/{tag_line}?api_key={api_key}"
-
-# # GETリクエスト
-# response = requests.get(url)
-# print("response:", response)
-
-# # レスポンスの処理
-# if response.status_code == 200:
-#     account_info = response.json()
-#     print("Account Info:", account_info)
-# else:
-#     print(f"Error {response.status_code}: {response.text}")
